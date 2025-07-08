@@ -17,4 +17,18 @@ public class SidesController : ControllerBase
   {
     return Ok("Sides Controller is running!");
   }
+
+  [HttpGet]
+  public ActionResult<List<Side>> GetAllSides()
+  {
+    try
+    {
+      List<Side> sides = _sidesService.GetAllSides();
+      return Ok(sides);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }
