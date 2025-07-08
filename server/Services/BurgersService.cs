@@ -1,4 +1,5 @@
 
+
 namespace burgershack_dotnet_fullstack.Services;
 
 public class BurgersService
@@ -14,6 +15,13 @@ public class BurgersService
   {
     List<Burger> burgers = _burgersRepository.GetAllBurgers();
     return burgers;
+  }
+
+  public Burger GetBurgerById(int burgerId)
+  {
+    Burger burger = _burgersRepository.GetBurgerById(burgerId);
+    if (burger == null) throw new Exception($"No burger with the id of {burgerId}.");
+    return burger;
   }
 }
 
