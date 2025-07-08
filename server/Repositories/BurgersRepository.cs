@@ -34,8 +34,8 @@ public class BurgersRepository
   {
     string sql = @"
     INSERT INTO
-    burgers (name, price)
-    VALUES (@Name, @Price);
+    burgers (name, price, imgUrl)
+    VALUES (@Name, @Price, @ImgUrl);
     SELECT * FROM burgers WHERE id = LAST_INSERT_ID();";
 
     Burger burger = _db.Query<Burger>(sql, burgerData).SingleOrDefault();

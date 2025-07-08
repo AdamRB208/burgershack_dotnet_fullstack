@@ -1,5 +1,6 @@
 
 
+
 namespace burgershack_dotnet_fullstack.Repositories;
 
 public class SidesRepository
@@ -25,6 +26,18 @@ public class SidesRepository
     SELECT * FROM sides WHERE id = @sideId;";
 
     Side side = _db.Query<Side>(sql, new { sideId = sideId }).SingleOrDefault();
+    return side;
+  }
+
+  public Side CreateSide(Side sideData)
+  {
+    string sql = @"
+    INSERT INTO
+    sides (name, price, imgUrl)
+    VALUES (@Name, @Price, @ImgUrl);
+    SELECT * FROM sides WHERE id = LAST_INSERT_ID();";
+
+    Side side = _db.Query<Side>(sql, sideData).SingleOrDefault();
     return side;
   }
 }

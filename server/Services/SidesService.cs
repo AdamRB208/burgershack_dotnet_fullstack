@@ -24,4 +24,10 @@ public class SidesService
     if (side == null) throw new Exception($"No Side with the id of {sideId}.");
     return side;
   }
+
+  public Side CreateSide(Side sideData)
+  {
+    Side side = _sidesRepository.CreateSide(sideData);
+    return side;
+  }
 }

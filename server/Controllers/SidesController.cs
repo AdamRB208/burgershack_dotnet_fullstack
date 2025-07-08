@@ -45,4 +45,18 @@ public class SidesController : ControllerBase
       return BadRequest(error.Message);
     }
   }
+
+  [HttpPost]
+  public ActionResult<Side> CreateSide([FromBody] Side sideData)
+  {
+    try
+    {
+      Side side = _sidesService.CreateSide(sideData);
+      return Ok(side);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }
