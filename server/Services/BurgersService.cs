@@ -23,6 +23,12 @@ public class BurgersService
     if (burger == null) throw new Exception($"No burger with the id of {burgerId}.");
     return burger;
   }
+
+  public Burger CreateBurger(Burger burgerData)
+  {
+    Burger burger = _burgersRepository.CreateBurger(burgerData);
+    return burger;
+  }
 }
 
 

@@ -42,3 +42,27 @@ VALUES ('Fries', 2.00),
     ('Sweet Potato Fries', 3.00);
 
 DROP TABLE sides;
+ALTER TABLE burgers
+ADD COLUMN imgUrl VARCHAR(255) NOT NULL DEFAULT(
+    'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJ1cmdlcnN8ZW58MHx8MHx8fDI%3D'
+) AFTER price;
+
+ALTER TABLE burgers
+ADD COLUMN imgUrl VARCHAR(255) NOT NULL DEFAULT(
+    'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJ1cmdlcnN8ZW58MHx8MHx8fDI%3D'
+) AFTER price;
+
+ALTER TABLE sides
+ADD COLUMN imgUrl VARCHAR(255) NOT NULL DEFAULT(
+    'https://images.unsplash.com/photo-1736826201130-c8a3d4e1427c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fGZyaWVzfGVufDB8MHwwfHx8Mg%3D%3D'
+) AFTER price;
+
+ALTER TABLE sides
+ADD COLUMN imgUrl VARCHAR(255) NOT NULL AFTER price;
+
+ALTER TABLE burgers DROP COLUMN imgUrl;
+
+ALTER TABLE sides DROP COLUMN imgUrl;
+
+-- Img for loaded fries
+-- https://images.unsplash.com/photo-1641848462100-a83532dbece5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGRpZmZlcmVudCUyMGtpbmRzJTIwb2YlMjBmcmllc3xlbnwwfHwwfHx8Mg%3D%3D
