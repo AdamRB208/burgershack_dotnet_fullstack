@@ -31,4 +31,18 @@ public class SidesController : ControllerBase
       return BadRequest(error.Message);
     }
   }
+
+  [HttpGet("{sideId}")]
+  public ActionResult<Side> GetSideById(int sideId)
+  {
+    try
+    {
+      Side side = _sidesService.GetSideById(sideId);
+      return Ok(side);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }
