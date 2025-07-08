@@ -17,4 +17,18 @@ public class BurgersController : ControllerBase
     return Ok("Burgers Controller is running!");
   }
 
+  [HttpGet]
+  public ActionResult<List<Burger>> GetAllBurgers()
+  {
+    try
+    {
+      List<Burger> burgers = _burgersService.GetAllBurgers();
+      return Ok(burgers);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
+
 }

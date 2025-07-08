@@ -1,3 +1,4 @@
+
 namespace burgershack_dotnet_fullstack.Repositories;
 
 public class BurgersRepository
@@ -10,5 +11,10 @@ public class BurgersRepository
 
   private readonly IDbConnection _db;
 
-  
+  public List<Burger> GetAllBurgers()
+  {
+    string sql = "SELECT * FROM burgers;";
+    List<Burger> burgers = _db.Query<Burger>(sql).ToList();
+    return burgers;
+  }
 }
