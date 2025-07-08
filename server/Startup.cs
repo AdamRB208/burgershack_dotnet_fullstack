@@ -40,6 +40,9 @@ public class Startup
     services.AddScoped<BurgersRepository>();
     services.AddScoped<BurgersService>();
 
+    services.AddScoped<SidesRepository>();
+    services.AddScoped<SidesService>();
+
   }
 
   private void ConfigureCors(IServiceCollection services)

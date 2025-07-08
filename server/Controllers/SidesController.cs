@@ -12,5 +12,9 @@ public class SidesController : ControllerBase
 
   private readonly SidesService _sidesService;
 
-  
+  [HttpGet("test")]
+  public ActionResult<string> Test()
+  {
+    return Ok("Sides Controller is running!");
+  }
 }
