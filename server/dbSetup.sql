@@ -64,5 +64,8 @@ ALTER TABLE burgers DROP COLUMN imgUrl;
 
 ALTER TABLE sides DROP COLUMN imgUrl;
 
+UPDATE burgers SET name = @Name, price = @Price WHERE id = @Id;
+
+SELECT * FROM burgers WHERE id = @Id;
 -- Img for loaded fries
 -- https://images.unsplash.com/photo-1641848462100-a83532dbece5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGRpZmZlcmVudCUyMGtpbmRzJTIwb2YlMjBmcmllc3xlbnwwfHwwfHx8Mg%3D%3D

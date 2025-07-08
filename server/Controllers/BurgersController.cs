@@ -72,4 +72,18 @@ public class BurgersController : ControllerBase
       return BadRequest(error.Message);
     }
   }
+
+  [HttpPut("{Id}")]
+  public ActionResult<Burger> UpdateBurger(int Id, [FromBody] Burger burgerData)
+  {
+    try
+    {
+      Burger burger = _burgersService.UpdateBurger(Id, burgerData);
+      return Ok(burger);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }
