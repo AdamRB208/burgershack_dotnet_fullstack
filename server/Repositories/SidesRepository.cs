@@ -1,6 +1,7 @@
 
 
 
+
 namespace burgershack_dotnet_fullstack.Repositories;
 
 public class SidesRepository
@@ -39,5 +40,16 @@ public class SidesRepository
 
     Side side = _db.Query<Side>(sql, sideData).SingleOrDefault();
     return side;
+  }
+
+  public void DeleteSide(int sideId)
+  {
+    string sql = @"
+    DELETE FROM sides WHERE id = @sideId LIMIT 1;";
+
+    int rowsAffected = _db.Execute(sql, new { sideId });
+
+    if (rowsAffected == 0) throw new Exception("No rows were deleted!");
+    if (rowsAffected > 1) throw new Exception("More than one row was deleted!");
   }
 }

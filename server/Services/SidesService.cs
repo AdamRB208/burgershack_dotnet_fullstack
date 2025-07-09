@@ -30,4 +30,11 @@ public class SidesService
     Side side = _sidesRepository.CreateSide(sideData);
     return side;
   }
+
+  public string DeleteSide(int sideId)
+  {
+    Side side = GetSideById(sideId);
+    _sidesRepository.DeleteSide(sideId);
+    return $"{side.Name} was deleted!";
+  }
 }

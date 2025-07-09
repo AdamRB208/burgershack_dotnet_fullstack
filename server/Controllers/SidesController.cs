@@ -59,4 +59,18 @@ public class SidesController : ControllerBase
       return BadRequest(error.Message);
     }
   }
+
+  [HttpDelete("{sideId}")]
+  public ActionResult<string> DeleteSide(int sideId)
+  {
+    try
+    {
+      string message = _sidesService.DeleteSide(sideId);
+      return Ok(message);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }
