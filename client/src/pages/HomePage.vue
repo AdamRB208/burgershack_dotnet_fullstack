@@ -1,11 +1,26 @@
-<script setup >
-import Example from '@/components/Example.vue';
+<script setup>
 
 
 </script>
 
 <template>
-  <Example />
+  <section class="container">
+    <div class="row">
+      <div class="col">
+        Header Here
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div>Burgers Here</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div>Sides Here</div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped lang="scss">
