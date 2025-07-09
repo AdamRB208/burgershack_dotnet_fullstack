@@ -52,4 +52,15 @@ public class SidesRepository
     if (rowsAffected == 0) throw new Exception("No rows were deleted!");
     if (rowsAffected > 1) throw new Exception("More than one row was deleted!");
   }
+
+  public Side UpdateSide(int Id, Side sideData)
+  {
+    string sql = @"
+    UPDATE sides SET name = @Name, price = @Price, imgUrl = @ImgUrl WHERE id = @Id;
+    SELECT * FROM sides WHERE id = @Id;";
+
+    sideData.Id = Id;
+    Side side = _db.Query<Side>(sql, sideData).SingleOrDefault();
+    return side;
+  }
 }

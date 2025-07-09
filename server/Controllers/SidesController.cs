@@ -73,4 +73,18 @@ public class SidesController : ControllerBase
       return BadRequest(error.Message);
     }
   }
+
+  [HttpPut("{Id}")]
+  public ActionResult<Side> UpdateSide(int Id, [FromBody] Side sideData)
+  {
+    try
+    {
+      Side side = _sidesService.UpdateSide(Id, sideData);
+      return Ok(side);
+    }
+    catch (Exception error)
+    {
+      return BadRequest(error.Message);
+    }
+  }
 }

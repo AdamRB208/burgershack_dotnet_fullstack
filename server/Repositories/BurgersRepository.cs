@@ -56,7 +56,7 @@ public class BurgersRepository
   public Burger UpdateBurger(int Id, Burger burgerData)
   {
     string sql = @"
-    UPDATE burgers SET name = @Name, price = @Price WHERE id = @Id;
+    UPDATE burgers SET name = @Name, price = @Price, imgUrl = @ImgUrl WHERE id = @Id;
     SELECT * FROM burgers WHERE id = @Id;";
 
     burgerData.Id = Id;

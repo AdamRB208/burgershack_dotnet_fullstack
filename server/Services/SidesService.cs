@@ -37,4 +37,10 @@ public class SidesService
     _sidesRepository.DeleteSide(sideId);
     return $"{side.Name} was deleted!";
   }
+
+  public Side UpdateSide(int Id, Side sideData)
+  {
+    Side side = _sidesRepository.UpdateSide(Id, sideData);
+    return side;
+  }
 }
