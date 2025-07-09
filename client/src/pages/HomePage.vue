@@ -1,4 +1,5 @@
 <script setup>
+import BurgerCard from '@/components/BurgerCard.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 
 
@@ -12,9 +13,9 @@ import HeaderSection from '@/components/HeaderSection.vue';
         <HeaderSection />
       </div>
     </div>
-    <div class="row">
+    <div class="row d-flex justify-content-center">
       <div class="col-md-6">
-        <div>Burgers Here</div>
+        <BurgerCard />
       </div>
     </div>
     <div class="row">
