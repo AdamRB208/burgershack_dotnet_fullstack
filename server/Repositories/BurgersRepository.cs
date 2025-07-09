@@ -1,7 +1,4 @@
 
-
-
-
 namespace burgershack_dotnet_fullstack.Repositories;
 
 public class BurgersRepository
