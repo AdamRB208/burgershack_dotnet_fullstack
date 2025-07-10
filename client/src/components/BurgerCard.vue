@@ -1,18 +1,58 @@
 <script setup>
-import { AppState } from '@/AppState.js';
-import { computed } from 'vue';
+import { Burger } from '@/models/Burger.js';
 
-const burger = computed(() => AppState.burgers)
+
+defineProps({
+  burger: { type: Burger, required: true }
+})
 
 
 </script>
 
 
 <template>
-  <div>{{ burger }}</div>
+  <div v-if="burger" class="card-container">
+    <div class="burger-card">
+      <img :src="burger.imgUrl" :alt="`image of ${burger.name}`" class="burger-img">
+      <div class="card-text mb-2">
+        <span class="ms-3">{{ burger.name }}</span>
+        <span class="me-4"> ${{ burger.price }}</span>
+      </div>
+    </div>
+  </div>
 </template>
 
 
 <style lang="scss" scoped>
+.burger-card {
+  position: relative;
+  max-width: 330px;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-left: none;
+  margin-right: none;
+}
+
+.burger-img {
+  object-fit: cover;
+  width: 40dvh;
+  max-width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  background-position: bottom;
+}
+
+.card-text {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: white;
+  text-shadow: 0 0 3px #242222;
+  background: linear-gradient(0deg, #1716167b 20%, transparent);
+  border-radius: 0 0 25px 25px;
+}
 
 </style>

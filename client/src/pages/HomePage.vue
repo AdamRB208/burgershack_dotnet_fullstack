@@ -7,7 +7,7 @@ import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
-const burger = computed(() => AppState.burgers)
+const burgers = computed(() => AppState.burgers)
 
 onMounted(() => {
   getBurgers()
@@ -32,11 +32,9 @@ async function getBurgers() {
         <HeaderSection />
       </div>
     </div>
-    <div class="row d-flex justify-content-center">
-      <div class="col-md-6">
-        <div v-for="burgers in burger" :key="burgers.id">
-          <BurgerCard :burgers="burger" />
-        </div>
+    <div class="row d-flex g-0">
+      <div class="col-md-4" v-for="burger in burgers" :key="burger.id">
+        <BurgerCard :burger="burger" />
       </div>
     </div>
     <div class="row">
@@ -48,7 +46,14 @@ async function getBurgers() {
 </template>
 
 <style scoped lang="scss">
-
+.col-md-4 {
+  padding-left: 0;
+  padding-right: 0;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
 </style>
 
 <!-- #f0833b -->
