@@ -1,5 +1,43 @@
 <script setup>
+import { burgerService } from '@/services/BurgerService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
+import { ref } from 'vue';
 
+
+const selectedType = ref('')
+
+const editableFormData = ref({
+  name: '',
+  price: '',
+  imgUrl: '',
+})
+
+
+async function createBurger() {
+  try {
+    const burgerData = editableFormData.value
+    await burgerService.createBurger(burgerData)
+    editableFormData.value = {
+      name: '',
+      price: '',
+      imgUrl: ''
+    }
+  }
+  catch (error) {
+    Pop.error(error, 'COULD NOT CREATE BURGER!!!');
+    logger.error('Could not create Burger!!', error)
+  }
+}
+
+function submitForm() {
+  if (selectedType.value === 'burger') {
+    createBurger();
+    logger.log('Creating a burger!')
+  } else if (selectedType.value === 'side') {
+    return
+  }
+}
 </script>
 
 
@@ -11,44 +49,43 @@
           <h5 class="modal-title">Create a Burger or Side</h5>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form @submit.prevent="submitForm()">
             <div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="burger" id="radioDefault1">
-                <label class="form-check-label" for="radioDefault1">
-                  Burger
-                </label>
-              </div>
-              <div class="form-check mb-3">
-                <input class="form-check-input" type="radio" name="side" id="radioDefault2">
-                <label class="form-check-label" for="radioDefault2">
-                  Side
-                </label>
+              <div class="radio-section">
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" v-model="selectedType" value="burger" id="radioBurger">
+                  <label class="form-check-label" for="radioBurger">Burger</label>
+                </div>
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="radio" v-model="selectedType" value="side" id="radioSide">
+                  <label class="form-check-label" for="radioSide">Side</label>
+                </div>
               </div>
               <label for="text" class="form-label">Name</label>
               <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">@</span>
-                <input type="text" class="form-control" placeholder="Name" aria-label="Name"
-                  aria-describedby="basic-addon1">
+                <span class="input-group-text" id="Name">Name</span>
+                <input v-model="editableFormData.name" type="text" class="form-control" placeholder="..."
+                  aria-label="Name" id="Name" maxlength="255" required>
               </div>
               <div class="mb-3">
                 <label for="basic-url" class="form-label">Picture</label>
                 <div class="input-group">
-                  <span class="input-group-text" id="basic-addon3">URL here</span>
-                  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4">
+                  <span class="input-group-text" id="basic-addon3">URL</span>
+                  <input v-model="editableFormData.imgUrl" type="text" class="form-control" id="ImgUrl"
+                    placeholder="..." maxlength="255" required>
                 </div>
               </div>
               <label for="text" class="form-label">Price</label>
               <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                <span class="input-group-text">.00</span>
+                <input v-model="editableFormData.price" type="text" class="form-control" id="Price" placeholder="..."
+                  maxlength="255" required>
               </div>
             </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-bs-orange">Submit</button>
+            </div>
           </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-bs-orange">Submit</button>
         </div>
       </div>
     </div>

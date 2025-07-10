@@ -13,6 +13,14 @@ class BurgerService {
     AppState.burgers = burger
     logger.log('burger', burger)
   }
+
+
+  async createBurger(burgerData) {
+    const response = await api.post('api/burgers', burgerData)
+    logger.log('Created Burger!', response.data)
+    const burger = new Burger(response.data)
+    return burger
+  }
 }
 
 export const burgerService = new BurgerService()

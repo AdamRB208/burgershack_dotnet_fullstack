@@ -38,7 +38,8 @@ defineProps({
   object-fit: cover;
   width: 40dvh;
   max-width: 100%;
-  height: 100%;
+  height: 30dvh;
+    max-height: 100%;
   border-radius: 25px;
   background-position: bottom;
 }
