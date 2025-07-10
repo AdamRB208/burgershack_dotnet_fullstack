@@ -1,6 +1,7 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import BurgerCard from '@/components/BurgerCard.vue';
+import CreateModal from '@/components/CreateModal.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 import { burgerService } from '@/services/BurgerService.js';
 import { logger } from '@/utils/Logger.js';
@@ -34,20 +35,26 @@ async function getBurgers() {
     </div>
     <div class="row d-flex g-0">
       <span class="d-inline-flex justify-content-between mt-2">
-        <h1 class="">Burgers</h1>
-        <button class="btn btn-outline-bs-orange rounded-pill" type="button">Create a Burger</button>
+        <h1 class="ms-4">Burgers</h1>
+        <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
+          data-bs-target="#CreateModal">Create Burger</button>
       </span>
       <div class="col-md-4" v-for="burger in burgers" :key="burger.id">
         <BurgerCard :burger="burger" />
       </div>
     </div>
     <div class="row d-flex g-0">
-      <h1 class="text-center">Sides</h1>
+      <span class="d-inline-flex justify-content-between mt-2">
+        <h1 class="ms-4">Sides</h1>
+        <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
+          data-bs-target="#CreateModal">Create Side</button>
+      </span>
       <div class="col-md-4">
         <div>Sides Here</div>
       </div>
     </div>
   </section>
+  <CreateModal />
 </template>
 
 <style scoped lang="scss">
@@ -59,9 +66,9 @@ async function getBurgers() {
   display: flex;
   justify-content: center;
 }
+
 h1 {
   color: #ed9153;
 }
 </style>
 
-<!-- #f0833b -->
