@@ -14,9 +14,9 @@ defineProps({
   <div v-if="burger" class="card-container">
     <div class="burger-card">
       <img :src="burger.imgUrl" :alt="`image of ${burger.name}`" class="burger-img">
-      <div class="card-text mb-2">
-        <span class="ms-3">{{ burger.name }}</span>
-        <span class="me-4"> ${{ burger.price }}</span>
+      <div class="card-text">
+        <span class="ms-3 mb-2">{{ burger.name }}</span>
+        <span class="me-4 mb-2"> ${{ burger.price }}</span>
       </div>
     </div>
   </div>
