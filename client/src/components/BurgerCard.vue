@@ -1,11 +1,16 @@
 <script setup>
+import { Burger } from '@/models/Burger.js';
 
+
+defineProps({
+  burger: { type: Burger, required: true }
+})
 
 </script>
 
 
 <template>
-<div>Burgers go here</div>
+  <div>{{ burger }}</div>
 </template>
 
 
