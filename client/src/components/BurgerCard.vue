@@ -1,10 +1,9 @@
 <script setup>
-import { Burger } from '@/models/Burger.js';
+import { AppState } from '@/AppState.js';
+import { computed } from 'vue';
 
+const burger = computed(() => AppState.burgers)
 
-defineProps({
-  burger: { type: Burger, required: true }
-})
 
 </script>
 

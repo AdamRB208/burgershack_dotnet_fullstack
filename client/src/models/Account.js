@@ -5,11 +5,15 @@ export class Account {
    * @property {string} email
    * @property {string} name
    * @property {string} picture
+   * @property {string} createdAt
+   * @property {string} updatedAt
    * 
    * @param {AccountData} data
    */
   constructor(data) {
     this.id = data.id
+    this.createdAt = data.createdAt
+    this.updatedAt = data.updatedAt
     this.email = data.email
     this.name = data.name
     this.picture = data.picture
