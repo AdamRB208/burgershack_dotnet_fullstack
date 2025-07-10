@@ -33,12 +33,17 @@ async function getBurgers() {
       </div>
     </div>
     <div class="row d-flex g-0">
+      <span class="d-inline-flex justify-content-between mt-2">
+        <h1 class="">Burgers</h1>
+        <button class="btn btn-outline-bs-orange rounded-pill" type="button">Create a Burger</button>
+      </span>
       <div class="col-md-4" v-for="burger in burgers" :key="burger.id">
         <BurgerCard :burger="burger" />
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
+    <div class="row d-flex g-0">
+      <h1 class="text-center">Sides</h1>
+      <div class="col-md-4">
         <div>Sides Here</div>
       </div>
     </div>
@@ -53,6 +58,9 @@ async function getBurgers() {
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+}
+h1 {
+  color: #ed9153;
 }
 </style>
 
