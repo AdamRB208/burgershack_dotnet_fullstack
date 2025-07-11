@@ -21,6 +21,14 @@ class BurgerService {
     const burger = new Burger(response.data)
     return burger
   }
+
+  async deleteBurger(burgerId) {
+    const response = await api.delete(`api/burgers/${burgerId}`)
+    logger.log('Deleted Burger!', response.data)
+    const burger = AppState.burgers
+    const index = burger.findIndex(burger => burger.id == burgerId)
+    burger.splice(index, 1)
+  }
 }
 
 export const burgerService = new BurgerService()
