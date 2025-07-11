@@ -1,6 +1,9 @@
 <script setup>
 import { AppState } from '@/AppState.js';
 import { Side } from '@/models/Side.js';
+import { sideService } from '@/services/SideService.js';
+import { logger } from '@/utils/Logger.js';
+import { Pop } from '@/utils/Pop.js';
 import { computed } from 'vue';
 
 const account = computed(() => AppState.account)
@@ -9,6 +12,19 @@ defineProps({
   side: { type: Side, required: true }
 })
 
+async function deleteSide(sideId) {
+  try {
+    const confirmed = await Pop.confirm("Are you sure you want to delete this Side?")
+    if (!confirmed) {
+      return
+    }
+    await sideService.deleteSide(sideId)
+  }
+  catch (error) {
+    Pop.error(error, 'COULD NOT DELETE SIDE!');
+    logger.log('Could not delete Side!', error)
+  }
+}
 
 </script>
 
@@ -16,7 +32,8 @@ defineProps({
 <template>
   <div v-if="side" class="card-container">
     <div class="side-card">
-      <i v-if="account" class="mdi mdi-alpha-x-circle text-danger text-end ms-2" role="button"></i>
+      <i v-if="account" @click="deleteSide(side.id)" class="mdi mdi-alpha-x-circle text-danger text-end ms-2"
+        role="button"></i>
       <img :src="side.imgUrl" :alt="`image of ${side.name}`" class="side-img">
       <div class="card-text">
         <span class="ms-3 mb-2">{{ side.name }}</span>

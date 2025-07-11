@@ -20,6 +20,13 @@ class SideService {
     return side
   }
 
+  async deleteSide(sideId) {
+    const response = await api.delete(`api/sides/${sideId}`)
+    logger.log('Deleted Side!', response.data)
+    const side = AppState.sides
+    const index = side.findIndex(side => side.id == sideId)
+    side.splice(index, 1)
+  }
 }
 
 export const sideService = new SideService()
