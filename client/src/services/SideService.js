@@ -13,6 +13,12 @@ class SideService {
     logger.log('side', side)
   }
 
+  async createSide(sideData) {
+    const response = await api.post('api/sides', sideData)
+    logger.log('Created Side!', response.data)
+    const side = new Side(response.data)
+    return side
+  }
 
 }
 

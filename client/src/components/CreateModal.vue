@@ -1,5 +1,6 @@
 <script setup>
 import { burgerService } from '@/services/BurgerService.js';
+import { sideService } from '@/services/SideService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { ref } from 'vue';
@@ -30,12 +31,28 @@ async function createBurger() {
   }
 }
 
+async function createSide() {
+  try {
+    const sideData = editableFormData.value
+    await sideService.createSide(sideData)
+    editableFormData.value = {
+      name: '',
+      price: '',
+      imgUrl: ''
+    }
+  }
+  catch (error) {
+    Pop.error(error, 'COULD NOT CREATE SIDE!');
+    logger.error('Could not create Side!', error)
+  }
+}
+
 function submitForm() {
   if (selectedType.value === 'burger') {
     createBurger();
     logger.log('Creating a burger!')
   } else if (selectedType.value === 'side') {
-    return
+    createSide()
   }
 }
 </script>
