@@ -5,6 +5,7 @@ import CreateModal from '@/components/CreateModal.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 import SideCard from '@/components/SideCard.vue';
 import { burgerService } from '@/services/BurgerService.js';
+import { sideService } from '@/services/SideService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
@@ -15,6 +16,7 @@ const sides = computed(() => AppState.sides)
 
 onMounted(() => {
   getBurgers()
+  getSides()
 })
 
 async function getBurgers() {
@@ -29,7 +31,7 @@ async function getBurgers() {
 
 async function getSides() {
   try {
-    await 
+    await sideService.getSides()
   }
   catch (error) {
     Pop.error(error, 'COULD NOT GET SIDES!');

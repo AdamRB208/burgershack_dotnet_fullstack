@@ -3,7 +3,7 @@ import { Side } from '@/models/Side.js';
 
 
 defineProps({
-  sides: { type: Side, required: true }
+  side: { type: Side, required: true }
 })
 
 
@@ -11,7 +11,7 @@ defineProps({
 
 
 <template>
-  <div>{{ sides }}</div>
+  <div v-if="side">{{ side }}</div>
 </template>
 
 
