@@ -3,12 +3,15 @@ import { AppState } from '@/AppState.js';
 import BurgerCard from '@/components/BurgerCard.vue';
 import CreateModal from '@/components/CreateModal.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
+import SideCard from '@/components/SideCard.vue';
 import { burgerService } from '@/services/BurgerService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
 import { computed, onMounted } from 'vue';
 
 const burgers = computed(() => AppState.burgers)
+
+const sides = computed(() => AppState.sides)
 
 onMounted(() => {
   getBurgers()
@@ -21,6 +24,16 @@ async function getBurgers() {
   catch (error) {
     Pop.error(error, 'COULD NOT GET BURGERS!');
     logger.log('Could not get Burgers!', error)
+  }
+}
+
+async function getSides() {
+  try {
+    await 
+  }
+  catch (error) {
+    Pop.error(error, 'COULD NOT GET SIDES!');
+    logger.error('Could not get Sides!', error)
   }
 }
 
@@ -49,8 +62,8 @@ async function getBurgers() {
         <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
           data-bs-target="#CreateModal">Create Side</button>
       </span>
-      <div class="col-md-4">
-        <div>Sides Here</div>
+      <div class="col-md-4" v-for="side in sides" :key="side.id">
+        <SideCard :side="side" />
       </div>
     </div>
   </section>

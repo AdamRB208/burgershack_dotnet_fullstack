@@ -1,11 +1,17 @@
 <script setup>
+import { Side } from '@/models/Side.js';
+
+
+defineProps({
+  sides: { type: Side, required: true }
+})
 
 
 </script>
 
 
 <template>
-<div></div>
+  <div>{{ sides }}</div>
 </template>
 
 
