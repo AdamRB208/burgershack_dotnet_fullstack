@@ -18,7 +18,6 @@ onMounted(() => {
   getBurgers()
   getSides()
 })
-// TODO make update in sql for img url
 // TODO make an update button and create an edit form for burgers and sides. 
 
 async function getBurgers() {
@@ -51,11 +50,17 @@ async function getSides() {
       </div>
     </div>
     <div class="row d-flex g-0">
-      <span class="d-inline-flex justify-content-between mt-2">
-        <h1 class="ms-4">Burgers</h1>
-        <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
-          data-bs-target="#CreateModal">Create Burger</button>
-      </span>
+      <div class="d-flex justify-content-between mt-2">
+        <span>
+          <h1 class="ms-4">Burgers</h1>
+        </span>
+        <span class="mt-2">
+          <button class="btn btn-outline-bs-orange rounded-pill me-2" type="button" data-bs-toggle="modal"
+            data-bs-target="#CreateModal">Create Burger</button>
+          <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
+            data-bs-target="#UpdateModal">Update Burger</button>
+        </span>
+      </div>
       <div class="col-md-4" v-for="burger in burgers" :key="burger.id">
         <BurgerCard :burger="burger" />
       </div>
