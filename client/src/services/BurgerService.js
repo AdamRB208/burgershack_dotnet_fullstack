@@ -5,6 +5,24 @@ import { AppState } from "@/AppState.js"
 
 
 class BurgerService {
+  async updateBurger(itemId, value) {
+    logger.log('itemId and value', itemId, value)
+    const response = await api.put(`api/burgers/${itemId}`, value)
+    logger.log('Updated Burger!', response.data)
+    const burger = AppState.burgers
+    const index = burger.findIndex(burger => burger.id === itemId)
+    burger.splice(index, 1, value)
+  }
+
+  async getBurgersById(itemId) {
+    // AppState.activeBurger = null
+    const response = await api.get(`api/burgers/${itemId}`)
+    logger.log('ItemId', itemId)
+    logger.log('Got Burger By Id!', response.data)
+    const burger = new Burger(response.data)
+    // AppState.activeBurger = burger
+    return burger
+  }
 
   async getBurgers() {
     const response = await api.get('api/burgers')

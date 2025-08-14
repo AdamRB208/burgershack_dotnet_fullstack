@@ -4,15 +4,20 @@ import BurgerCard from '@/components/BurgerCard.vue';
 import CreateModal from '@/components/CreateModal.vue';
 import HeaderSection from '@/components/HeaderSection.vue';
 import SideCard from '@/components/SideCard.vue';
+import UpdateModal from '@/components/UpdateModal.vue';
 import { burgerService } from '@/services/BurgerService.js';
 import { sideService } from '@/services/SideService.js';
 import { logger } from '@/utils/Logger.js';
 import { Pop } from '@/utils/Pop.js';
-import { computed, onMounted } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 
 const burgers = computed(() => AppState.burgers)
 
 const sides = computed(() => AppState.sides)
+
+const selectedItemId = ref(null)
+
+const selectedItemType = ref('')
 
 onMounted(() => {
   getBurgers()
@@ -40,6 +45,12 @@ async function getSides() {
   }
 }
 
+function updateItem(id, type) {
+  selectedItemId.value = id
+  selectedItemType.value = type
+  logger.log(`Updating ${type} with id ${id}`)
+}
+
 </script>
 
 <template>
@@ -57,11 +68,12 @@ async function getSides() {
         <span class="mt-2">
           <button class="btn btn-outline-bs-orange rounded-pill me-2" type="button" data-bs-toggle="modal"
             data-bs-target="#CreateModal">Create Burger</button>
-          <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
-            data-bs-target="#UpdateModal">Update Burger</button>
+          <!-- <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
+            data-bs-target="#UpdateModal">Update Burger</button> -->
         </span>
       </div>
-      <div class="col-md-4" v-for="burger in burgers" :key="burger.id">
+      <div class="col-md-4" v-for="burger in burgers" :key="burger.id" @click="updateItem(burger.id, 'burger')"
+        data-bs-toggle="modal" data-bs-target="#UpdateModal" type="button">
         <BurgerCard :burger="burger" />
       </div>
     </div>
@@ -77,6 +89,7 @@ async function getSides() {
     </div>
   </section>
   <CreateModal />
+  <UpdateModal :itemId="selectedItemId" />
 </template>
 
 <style scoped lang="scss">

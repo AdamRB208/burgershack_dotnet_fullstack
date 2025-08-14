@@ -8,7 +8,11 @@ export const AppState = reactive({
   account: null,
   /** @type {import('./models/Burger.js').Burger []} user info from the database*/
   burgers: [],
+  /** @type {import('./models/Burger.js').Burger []} user info from the database*/
+  activeBurger: null,
   /** @type {import('./models/Side.js').Side []} user info from the database*/
-  sides: []
+  sides: [],
+  /** @type {import('./models/Side.js').Side []} user info from the database*/
+  activeSide: null
 })
 
