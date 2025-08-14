@@ -83,7 +83,8 @@ function updateItem(id, type) {
         <button class="btn btn-outline-bs-orange rounded-pill me-5" type="button" data-bs-toggle="modal"
           data-bs-target="#CreateModal">Create Side</button>
       </span>
-      <div class="col-md-4" v-for="side in sides" :key="side.id">
+      <div class="col-md-4" v-for="side in sides" :key="side.id" @click="updateItem(side.id, 'side')"
+        data-bs-toggle="modal" data-bs-target="#UpdateModal" type="button">
         <SideCard :side="side" />
       </div>
     </div>
