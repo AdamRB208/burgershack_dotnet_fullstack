@@ -18,6 +18,8 @@ onMounted(() => {
   getBurgers()
   getSides()
 })
+// TODO make update in sql for img url
+// TODO make an update button and create an edit form for burgers and sides. 
 
 async function getBurgers() {
   try {

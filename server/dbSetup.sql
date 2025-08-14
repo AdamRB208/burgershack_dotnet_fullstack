@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS accounts(
   picture VARCHAR(255) COMMENT 'User Picture'
 ) default charset utf8mb4 COMMENT '';
 
+
 CREATE TABLE burgers (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name TINYTEXT NOT NULL,
@@ -48,7 +49,7 @@ ADD COLUMN imgUrl VARCHAR(255) NOT NULL DEFAULT(
 ) AFTER price;
 
 ALTER TABLE burgers
-ADD COLUMN imgUrl VARCHAR(255) NOT NULL DEFAULT(
+ADD COLUMN imgUrl VARCHAR(255) DEFAULT(
     'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJ1cmdlcnN8ZW58MHx8MHx8fDI%3D'
 ) AFTER price;
 
